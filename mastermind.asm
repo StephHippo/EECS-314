@@ -69,12 +69,12 @@ main:
 		#############
 		# Algorithm #
 		###########################################################################################
-		# For each digit in the guess that appears in the same place as in the sequence			  #
-		#		add 1 to correctslots, add 1 to correctdigits							    	  #
-		# For each digit in the guess that appears in the sequence, but in a different position:  #
-		#		add 1 to correctdigits (don't double count)								 		  #
-		# If no digits in the guess appear in the sequence,										  #
-		#		add 0 in correctslots and correctdigits										   	  #
+		# For each letter in the guess that appears in the same place as in the sequence		  #
+		#		add 1 to correctspot, add 1 to correctcols							    	  	  #
+		# For each letter in the guess that appears in the sequence, but in a different position: #
+		#		add 1 to correctcols (don't double count)								 		  #
+		# If no letter in the guess appear in the sequence,										  #
+		#		add 0 in correctspot and correctcols										   	  #
 		###########################################################################################
 	
 		li		$v0, 10					# 10 is the exit syscall
