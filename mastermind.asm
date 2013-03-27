@@ -21,11 +21,16 @@ main:
 		li		$v0, 4					# 4 is the print_string syscall.
 		syscall
 		
+		# Get player 1's code
 		li $v0, 8 						# take in input
-        la $a0, buffer 					# load byte space into address
+        la $a0, code 					# load byte space into address
         li $a1, 5 						# allot the byte space for string
         move $t0,$a0 					# save string to t0
         syscall
+		
+		# Store code in array
+		la 		$a0, code					#reload byte space to primary address
+		move 	$a0, $t0
 		
 		la $a0, space					# line break
         li $v0, 4
@@ -42,10 +47,15 @@ main:
 		
 		# Get player 2's guess
 		li $v0, 8 						# take in input
-        la $a0, buffer 					# load byte space into address
+        la $a0, guess 					# load byte space into address
         li $a1, 5 						# allot the byte space for string
-        move $t0,$a0 					# save string to t0
+        move $t1,$a0 					# save string to t1
         syscall
+		
+		# Store guess in array
+		la 		$s1, guess					#reload byte space to primary address
+		move 	$s1, $t1
+		la		$s1, 4
 		
 		la $a0, vert_line				# line
         li $v0, 4
@@ -70,7 +80,8 @@ main:
 
 # Data for the program:
 		.data
-buffer: 			.space 5
+code: 				.space 5
+guess:				.space 5
 welcome_msg:		.asciiz "Are you a Mastermind?!\n"
 player1_prompt:		.asciiz "Player 1, enter a 4 color sequence: \n"
 colors:				.asciiz "(R - Red, O - Orange, Y - Yellow, G - Green, B - Blue, P - Purple) \n"
